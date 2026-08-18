@@ -279,6 +279,7 @@ const SECTION_SEEDS: SectionSeed[] = [
     daysAgo: 44,
     reviewed: false,
     blocks: [
+      { type: 'heading', level: 2, text: 'HUD' },
       { type: 'text', markdown: 'HUD stays out of the way during rotation and expands only what the current fight or build action needs.' },
       { type: 'image', assetId: ASSET_IDS.hudWireframe, caption: 'HUD wireframe — health/shield, storm timer, material counts' },
       { type: 'heading', level: 2, text: 'Controls' },
