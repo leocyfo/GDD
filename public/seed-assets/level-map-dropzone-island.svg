@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <rect width="800" height="450" fill="#0c0e13"/>
+  <g stroke="#2a2f3d" stroke-width="1">
+    <path d="M0 45 H800 M0 90 H800 M0 135 H800 M0 180 H800 M0 225 H800 M0 270 H800 M0 315 H800 M0 360 H800 M0 405 H800"/>
+    <path d="M45 0 V450 M90 0 V450 M135 0 V450 M180 0 V450 M225 0 V450 M270 0 V450 M315 0 V450 M360 0 V450 M405 0 V450 M450 0 V450 M495 0 V450 M540 0 V450 M585 0 V450 M630 0 V450 M675 0 V450 M720 0 V450 M765 0 V450"/>
+  </g>
+  <path d="M180 120 C260 80 420 90 500 140 C600 190 620 280 540 330 C460 380 300 370 230 320 C160 270 130 170 180 120 Z" fill="#243120" stroke="#3d5c33" stroke-width="2"/>
+  <circle cx="320" cy="180" r="8" fill="#c9a24b"/>
+  <circle cx="430" cy="230" r="8" fill="#c9a24b"/>
+  <circle cx="280" cy="290" r="8" fill="#c9a24b"/>
+  <circle cx="480" cy="160" r="8" fill="#c9a24b"/>
+  <text x="400" y="410" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="22" fill="#8a91a3" letter-spacing="1">DROPZONE ISLAND — ANNOTATED POIS</text>
+</svg>

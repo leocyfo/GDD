@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2a2350"/>
+      <stop offset="0.55" stop-color="#4b3a6e"/>
+      <stop offset="1" stop-color="#c9773f"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#sky)"/>
+  <ellipse cx="220" cy="120" rx="180" ry="60" fill="#15101f" opacity="0.55"/>
+  <ellipse cx="560" cy="90" rx="220" ry="70" fill="#15101f" opacity="0.5"/>
+  <ellipse cx="400" cy="160" rx="260" ry="50" fill="#15101f" opacity="0.45"/>
+  <path d="M0 340 L120 300 L220 330 L340 280 L460 320 L580 290 L700 330 L800 300 L800 450 L0 450 Z" fill="#0c0e13"/>
+  <text x="400" y="410" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="22" fill="#e8dfc9" letter-spacing="1">STORM FRONT ROLLING IN — DUSK PALETTE</text>
+</svg>

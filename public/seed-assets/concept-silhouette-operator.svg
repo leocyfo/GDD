@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1a1f2b"/>
+      <stop offset="1" stop-color="#0c0e13"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bg)"/>
+  <ellipse cx="400" cy="330" rx="150" ry="24" fill="#000000" opacity="0.35"/>
+  <path d="M400 90c-30 0-52 24-52 55 0 20 9 36 24 46-46 14-82 55-88 116h232c-6-61-42-102-88-116 15-10 24-26 24-46 0-31-22-55-52-55z" fill="#c9a24b" opacity="0.85"/>
+  <text x="400" y="410" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="22" fill="#8a91a3" letter-spacing="1">OPERATOR SILHOUETTE — DEFAULT LOADOUT</text>
+</svg>

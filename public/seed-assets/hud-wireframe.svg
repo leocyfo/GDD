@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <rect width="800" height="450" fill="#0c0e13"/>
+  <g fill="none" stroke="#5a6178" stroke-width="1.5">
+    <rect x="24" y="24" width="180" height="18" rx="3"/>
+    <rect x="24" y="50" width="140" height="10" rx="2"/>
+    <rect x="596" y="24" width="180" height="40" rx="4"/>
+    <rect x="24" y="380" width="220" height="46" rx="4"/>
+    <rect x="596" y="380" width="180" height="46" rx="4"/>
+    <circle cx="700" cy="404" r="18"/>
+  </g>
+  <g fill="#5a6178">
+    <rect x="34" y="27" width="120" height="12"/>
+    <rect x="34" y="53" width="80" height="6"/>
+    <rect x="606" y="34" width="120" height="10"/>
+    <rect x="606" y="48" width="90" height="8"/>
+    <rect x="34" y="390" width="160" height="10"/>
+    <rect x="34" y="406" width="120" height="8"/>
+  </g>
+  <text x="400" y="230" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="16" fill="#3a4053" letter-spacing="2">— PLAY AREA —</text>
+  <text x="400" y="410" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="22" fill="#8a91a3" letter-spacing="1">HUD WIREFRAME — HEALTH / STORM / MATERIALS</text>
+</svg>

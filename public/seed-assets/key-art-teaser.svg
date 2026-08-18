@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <defs>
+    <linearGradient id="sky2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0c0e13"/>
+      <stop offset="0.5" stop-color="#3a2a4d"/>
+      <stop offset="1" stop-color="#c9773f"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#sky2)"/>
+  <circle cx="620" cy="120" r="70" fill="#e8dfc9" opacity="0.85"/>
+  <ellipse cx="400" cy="360" rx="420" ry="90" fill="#0c0e13"/>
+  <path d="M340 260 L360 150 L380 260 Z" fill="#1a1f2b"/>
+  <path d="M380 280 L410 120 L440 280 Z" fill="#1a1f2b"/>
+  <path d="M420 260 L450 170 L480 260 Z" fill="#1a1f2b"/>
+  <text x="400" y="230" text-anchor="middle" font-family="Segoe UI, sans-serif" font-weight="700" font-size="46" fill="#f4f0e6" letter-spacing="4">STORMLINE</text>
+  <text x="400 " y="410" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="20" fill="#e8dfc9" letter-spacing="1">EARLY KEY ART TEASER COMPOSITION</text>
+</svg>

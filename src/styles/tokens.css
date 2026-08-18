@@ -1,0 +1,79 @@
+/*
+ * Design tokens — the only place raw color/shadow values may appear.
+ * Every other file references these through the Tailwind theme mapping in
+ * `src/index.css` (`bg-app`, `text-text2`, `border-border`, …) or, for
+ * anything Tailwind doesn't cover, through `var(--raw-*)` directly.
+ *
+ * Two palettes: `:root` is the dark (default) theme, sourced verbatim from
+ * the validated Overview mockup so the exact look already approved carries
+ * forward. `[data-theme='light']` is a warm-parchment palette built around
+ * the same gold accent — a deliberate light theme, not a gray inversion.
+ */
+
+:root {
+  --raw-bg-app: #0e1015;
+  --raw-bg-sidebar: #131620;
+  --raw-bg-card: #171a22;
+  --raw-bg-inset: #1d212b;
+  --raw-border: #262b36;
+  --raw-border-hover: #3a4152;
+  --raw-text-1: #e8eaed;
+  --raw-text-2: #9aa3b2;
+  --raw-text-3: #6b7280;
+  --raw-accent: #d4a855;
+  --raw-accent-fg: #0e1015;
+  --raw-green: #4ade80;
+  --raw-amber: #f5a524;
+  --raw-red: #e5484d;
+  --raw-gray-dot: #4b5563;
+  --raw-blue: #3b82f6;
+  --raw-card-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme='light'] {
+  --raw-bg-app: #f6f5f1;
+  --raw-bg-sidebar: #efede6;
+  --raw-bg-card: #ffffff;
+  --raw-bg-inset: #f1efe9;
+  --raw-border: #e2ded2;
+  --raw-border-hover: #c9c2ae;
+  --raw-text-1: #232017;
+  --raw-text-2: #5b5645;
+  --raw-text-3: #8a8370;
+  --raw-accent: #b8863e;
+  --raw-accent-fg: #ffffff;
+  --raw-green: #1e9e5a;
+  --raw-amber: #c8790a;
+  --raw-red: #c93a3f;
+  --raw-gray-dot: #9a9484;
+  --raw-blue: #2a63c7;
+  --raw-card-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+/* System preference is honored automatically as long as no explicit choice
+   has been persisted — `theme.ts` only ever sets `data-theme` once the user
+   (or the stored preference) picks a side, so this block is the true default
+   for a first-ever visit with a dark OS theme. Since dark IS `:root`'s
+   unqualified default, this media block only needs to exist for symmetry /
+   documentation; nothing to override here. */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']) {
+    --raw-bg-app: #f6f5f1;
+    --raw-bg-sidebar: #efede6;
+    --raw-bg-card: #ffffff;
+    --raw-bg-inset: #f1efe9;
+    --raw-border: #e2ded2;
+    --raw-border-hover: #c9c2ae;
+    --raw-text-1: #232017;
+    --raw-text-2: #5b5645;
+    --raw-text-3: #8a8370;
+    --raw-accent: #b8863e;
+    --raw-accent-fg: #ffffff;
+    --raw-green: #1e9e5a;
+    --raw-amber: #c8790a;
+    --raw-red: #c93a3f;
+    --raw-gray-dot: #9a9484;
+    --raw-blue: #2a63c7;
+    --raw-card-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  }
+}
