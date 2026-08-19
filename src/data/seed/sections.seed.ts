@@ -33,26 +33,11 @@ const SECTION_SEEDS: SectionSeed[] = [
         markdown:
           "A 60-player battle royale where building isn't an accessory to combat — it's the combat: throw up cover mid-firefight, box in a downed enemy, or bridge to high ground before the storm eats the map.",
       },
-      { type: 'heading', level: 2, text: 'Pillars' },
       {
-        type: 'list',
-        ordered: false,
-        items: [
-          'Building is combat, not a menu',
-          'Every fight is winnable if your hands are faster',
-          'Loot creates decisions, not busywork',
-          'The storm is the real final boss',
-        ],
-      },
-      { type: 'heading', level: 2, text: 'Non-goals' },
-      {
-        type: 'list',
-        ordered: false,
-        items: [
-          'No pay-to-win cosmetic power',
-          'No solo-only design',
-          'No dev-authored "hero" characters with unique combat abilities',
-        ],
+        type: 'callout',
+        variant: 'note',
+        title: 'Pillars & non-goals live on Overview',
+        body: "Each one's editable there, with its own rationale — not repeated here as a static list that could drift out of sync.",
       },
       {
         type: 'callout',
@@ -133,6 +118,24 @@ const SECTION_SEEDS: SectionSeed[] = [
           ['Progression', 'A seasonal Battle Pass track fed by match XP; unlocks are cosmetic only, never combat stats.'],
           ['Dynamic Audio', 'Storm-tension-scored combat music layering; the Downed-state music layer is designed but not yet built.'],
         ],
+      },
+      {
+        type: 'text',
+        markdown:
+          'One `GameManager` owns match state and wires up everything above — this is the top-level dependency shape, not a full class diagram.',
+      },
+      {
+        type: 'diagram',
+        mermaid:
+          'graph TD\n' +
+          '  GM[GameManager] --> Storm[StormController]\n' +
+          '  GM --> Build[BuildingSystem]\n' +
+          '  GM --> Loot[LootEconomySystem]\n' +
+          '  GM --> Move[MovementController]\n' +
+          '  GM --> Squad[SquadCommsSystem]\n' +
+          '  Build --> MatInv[MaterialInventory]\n' +
+          '  Loot --> MatInv\n' +
+          '  Storm --> Move',
       },
       {
         type: 'query',
@@ -224,25 +227,6 @@ const SECTION_SEEDS: SectionSeed[] = [
         variant: 'note',
         title: 'Scope is tracked separately',
         body: 'What\'s in, out, or stretch — and why — now lives on its own Scope Matrix screen, not as a block buried in this section.',
-      },
-      { type: 'heading', level: 2, text: 'Systems architecture' },
-      {
-        type: 'text',
-        markdown:
-          'One `GameManager` owns match state and wires up everything below it — this is the top-level dependency shape, not a full class diagram.',
-      },
-      {
-        type: 'diagram',
-        mermaid:
-          'graph TD\n' +
-          '  GM[GameManager] --> Storm[StormController]\n' +
-          '  GM --> Build[BuildingSystem]\n' +
-          '  GM --> Loot[LootEconomySystem]\n' +
-          '  GM --> Move[MovementController]\n' +
-          '  GM --> Squad[SquadCommsSystem]\n' +
-          '  Build --> MatInv[MaterialInventory]\n' +
-          '  Loot --> MatInv\n' +
-          '  Storm --> Move',
       },
     ],
   },
@@ -340,15 +324,13 @@ const SECTION_SEEDS: SectionSeed[] = [
     reviewed: false,
     blocks: [
       { type: 'heading', level: 2, text: 'Stretch goals' },
-      {
-        type: 'text',
-        markdown: 'Seasonal Vaulted Weapon Rotation and Bot-Fill Matchmaking are both fully designed but not committed to v1 — see the decision log.',
-      },
+      { type: 'text', markdown: 'Designed but not committed to v1 — see the decision log.' },
+      { type: 'featureCards', featureIds: [FEATURE_IDS.seasonalVaultedWeaponRotation, FEATURE_IDS.botFillMatchmaking] },
       { type: 'heading', level: 2, text: 'Marketing & monetization' },
       {
         type: 'text',
         markdown:
-          '**Positioning**: a fast-paced, building-first battle royale for players who want mechanical skill expression to go beyond aim alone. **Competitors**: Fortnite, Apex Legends, PUBG, and Call of Duty: Warzone — Stormline\'s wedge is combat-speed building as the primary skill ceiling, not a secondary system. **Business model**: free-to-play, funded by a seasonal Battle Pass and a rotating cosmetic shop — see the decision log for the no-pay-to-win commitment.',
+          "**Positioning**: a fast-paced, building-first battle royale for players who want mechanical skill expression to go beyond aim alone. **Competitors**: Fortnite, Apex Legends, PUBG, and Call of Duty: Warzone — Stormline's wedge is combat-speed building as the primary skill ceiling, not a secondary system. **Business model** — see Constraints; the no-pay-to-win commitment is in the decision log.",
       },
       { type: 'heading', level: 2, text: 'External docs' },
       { type: 'list', ordered: false, items: ['Ranked signal playtest report (external)', 'Duos mode playtest report (external)'] },

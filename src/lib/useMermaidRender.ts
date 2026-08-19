@@ -48,44 +48,50 @@ export function useMermaidRender(source: string): MermaidRenderResult {
       const { default: mermaid } = await import('mermaid')
       if (cancelled) return
 
-      const style = getComputedStyle(document.documentElement)
-      const token = (name: string) => style.getPropertyValue(name).trim()
-
-      mermaid.initialize({
-        startOnLoad: false,
-        // A malformed/malicious diagram source must never inject arbitrary
-        // HTML or scripts through the labels — this block's content is
-        // user-authored and rendered via `dangerouslySetInnerHTML`.
-        securityLevel: 'strict',
-        // Without this, mermaid's own error path injects an unstyled
-        // "bomb" error graphic directly into `document.body` on a parse
-        // failure — outside React's tree entirely, so it never gets
-        // cleaned up. The `catch` below already renders a real error
-        // state; mermaid doesn't need to draw its own.
-        suppressErrorRendering: true,
-        theme: 'base',
-        fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
-        themeVariables: {
-          background: token('--raw-bg-inset'),
-          mainBkg: token('--raw-bg-card'),
-          primaryColor: token('--raw-bg-card'),
-          primaryBorderColor: token('--raw-border-hover'),
-          primaryTextColor: token('--raw-text-1'),
-          secondaryColor: token('--raw-bg-inset'),
-          secondaryBorderColor: token('--raw-border'),
-          tertiaryColor: token('--raw-bg-inset'),
-          tertiaryBorderColor: token('--raw-border'),
-          lineColor: token('--raw-text-3'),
-          textColor: token('--raw-text-2'),
-          nodeBorder: token('--raw-border-hover'),
-          clusterBkg: token('--raw-bg-inset'),
-          clusterBorder: token('--raw-border'),
-          edgeLabelBackground: token('--raw-bg-inset'),
-          fontSize: '13px',
-        },
-      })
-
       try {
+        const style = getComputedStyle(document.documentElement)
+        const token = (name: string) => style.getPropertyValue(name).trim()
+
+        // `initialize` and `render` are both inside this `try` — `initialize`
+        // itself can throw synchronously (khroma's color parser rejects an
+        // empty string, which a token can resolve to if this fires while
+        // the document is mid-teardown), and an uncaught throw here would
+        // escape as an unhandled promise rejection instead of the same
+        // error state a bad diagram source already produces below.
+        mermaid.initialize({
+          startOnLoad: false,
+          // A malformed/malicious diagram source must never inject arbitrary
+          // HTML or scripts through the labels — this block's content is
+          // user-authored and rendered via `dangerouslySetInnerHTML`.
+          securityLevel: 'strict',
+          // Without this, mermaid's own error path injects an unstyled
+          // "bomb" error graphic directly into `document.body` on a parse
+          // failure — outside React's tree entirely, so it never gets
+          // cleaned up. The `catch` below already renders a real error
+          // state; mermaid doesn't need to draw its own.
+          suppressErrorRendering: true,
+          theme: 'base',
+          fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+          themeVariables: {
+            background: token('--raw-bg-inset'),
+            mainBkg: token('--raw-bg-card'),
+            primaryColor: token('--raw-bg-card'),
+            primaryBorderColor: token('--raw-border-hover'),
+            primaryTextColor: token('--raw-text-1'),
+            secondaryColor: token('--raw-bg-inset'),
+            secondaryBorderColor: token('--raw-border'),
+            tertiaryColor: token('--raw-bg-inset'),
+            tertiaryBorderColor: token('--raw-border'),
+            lineColor: token('--raw-text-3'),
+            textColor: token('--raw-text-2'),
+            nodeBorder: token('--raw-border-hover'),
+            clusterBkg: token('--raw-bg-inset'),
+            clusterBorder: token('--raw-border'),
+            edgeLabelBackground: token('--raw-bg-inset'),
+            fontSize: '13px',
+          },
+        })
+
         const { svg } = await mermaid.render(idRef.current, trimmed)
         if (!cancelled) setResult({ svg, error: null, loading: false })
       } catch (err) {
