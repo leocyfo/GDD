@@ -93,15 +93,21 @@ function NewProjectCard({ onCreated }: { onCreated: (projectId: string) => void 
   const [creating, setCreating] = useState(false)
   const [name, setName] = useState('')
   const [busy, setBusy] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault()
     const trimmed = name.trim()
     if (!trimmed || busy) return
     setBusy(true)
+    setError(null)
     try {
       const project = await createNewProject(repo, trimmed)
       onCreated(project.id)
+    } catch (err) {
+      // Failing silently here reads as a dead button — a cloud-mode
+      // creation can genuinely fail (RLS, network), and did once already.
+      setError(err instanceof Error ? err.message : 'Could not create this document.')
     } finally {
       setBusy(false)
     }
@@ -133,6 +139,7 @@ function NewProjectCard({ onCreated }: { onCreated: (projectId: string) => void 
         placeholder="e.g. Lighthouse Keeper"
         className="rounded-md border border-border bg-card px-3 py-2 text-sm-plus text-text1 outline-none focus-visible:border-accent"
       />
+      {error && <p className="text-2xs text-red">{error}</p>}
       <div className="mt-auto flex gap-2">
         <button
           type="submit"
