@@ -138,7 +138,24 @@ export class SupabaseRepository implements Repository {
       // reusing wholesale.
       async create(input) {
         const record = { ...input, id: generateId('project'), owner_id: userId, createdAt: nowIso(), updatedAt: nowIso() }
-        return unwrap(await supabase.from('projects').insert([record]).select().single())
+        // Deliberately not `.insert([record]).select().single()` — that
+        // chains `Prefer: return=representation`, which asks Postgres to
+        // re-check the `projects` SELECT policy (`is_project_member`)
+        // against the row it just inserted. `is_project_member` depends
+        // on `project_members`, which only gets its row from the
+        // `on_project_created` AFTER trigger — and that trigger's effect
+        // isn't reliably visible yet to the RETURNING clause's policy
+        // re-check within the *same* statement, so the whole insert gets
+        // rejected with a misleading "new row violates row-level security
+        // policy" even though the row (and the trigger's own insert) would
+        // otherwise have gone through cleanly. Confirmed empirically: the
+        // exact same insert without `.select()` succeeds and the trigger
+        // fires correctly. `record` already has every field a real
+        // `Project` needs, so there's nothing RETURNING would tell us
+        // that we don't already know.
+        const { error } = await supabase.from('projects').insert([record])
+        if (error) throw new Error(error.message)
+        return record
       },
       // Same reasoning as `create` above — `owner_id` isn't part of the
       // `Project` type, so the generic `bulkPut` from `createSupabaseCrud`
