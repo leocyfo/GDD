@@ -44,7 +44,14 @@ $$;
 
 -- ---------------------------------------------------------------------
 -- Invite a teammate by email — returns the invited account's id.
+--
+-- Dropped first: the version 0002 actually got to run still returns
+-- `void` (this file's `create or replace` came after that stopping
+-- point), and Postgres refuses to change an existing function's return
+-- type via `create or replace` — it has to go entirely and come back.
 -- ---------------------------------------------------------------------
+drop function if exists public.invite_project_member(text, text, text);
+
 create or replace function public.invite_project_member(
   p_project_id text,
   p_email text,
